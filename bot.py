@@ -71,7 +71,7 @@ async def main():
 
     while True:
         await send_message(message)
-        await asyncio.sleep(5)
+        await asyncio.sleep(60)
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
