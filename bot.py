@@ -35,10 +35,6 @@ def get_message():
     prf_proposal = get_prf_proposal(top_ten_votes)
     prf_votes = prf_proposal["votes"]
 
-    print(f'prf_position_in_rank: {prf_position_in_rank}')
-    print(f'prf_proposal: {prf_proposal}')
-    print(f'prf_votes: {prf_votes}')
-    
     if prf_position_in_rank > -1:
         message += 'Dia {} - {}\n\n'.format(get_date(), get_time())
         message += '*🚨Estamos em {}º lugar com {} votos!🚨*\n\n'.format(
