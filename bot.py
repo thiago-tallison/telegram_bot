@@ -1,5 +1,6 @@
 import os
 import asyncio
+from bcolors import bcolors
 import schedule
 import time
 from telegram import Bot
@@ -17,6 +18,8 @@ DIFF_MESSAGE = ''
 def get_date():
     return date.today().strftime("%d/%m/%Y")
 
+def clear_console():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 def get_time():
     return datetime.now().strftime("%H:%M:%S")
@@ -53,7 +56,7 @@ def get_message():
 
 
 async def send_message(message):
-    print('[+] Sending message')
+    print(bcolors.OKCYAN, '[+] Sending message', bcolors.ENDC)
     bot = Bot(BOT_TOKEN)
     await bot.send_message(chat_id=CHAT_ID, text=message, parse_mode=ParseMode.MARKDOWN)
 
@@ -66,7 +69,9 @@ async def main():
 schedule.every(5).seconds.do(lambda: asyncio.run(main()))
 
 if __name__ == "__main__":
-    print('[+] Bot running...')
+    clear_console()
+    print(bcolors.BOLD, bcolors.OKGREEN, '[+] Bot running...', bcolors.ENDC)
+    
     while True:
         schedule.run_pending()
         time.sleep(1)
