@@ -67,4 +67,6 @@ def get_prf_proposal(top_ten_votes):
     for item in top_ten_votes:
         if "prf" in item["name"].lower():
             return item
+            
+    print(f'top_ten: {top_ten_votes}')
     return None

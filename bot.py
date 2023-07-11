@@ -27,6 +27,9 @@ def get_time():
 def get_message():
     top_ten_votes =  get_top_ten_votes()
 
+    if not top_ten_votes:
+        return ""
+    
     save_votes(top_ten_votes)
 
     message = ""
@@ -34,6 +37,7 @@ def get_message():
     prf_position_in_rank = get_prf_ranking(top_ten_votes)
     prf_proposal = get_prf_proposal(top_ten_votes)
     prf_votes = prf_proposal["votes"]
+
 
     if prf_position_in_rank > -1:
         message += 'Dia {} - {}\n\n'.format(get_date(), get_time())
@@ -52,8 +56,10 @@ def get_message():
 
 
 async def send_message(message):
-    print(bcolors.OKCYAN, '[+] Sending message', bcolors.ENDC)
+    print(bcolors.OKGREEN, '[+] Sending message', bcolors.ENDC)
     bot = Bot(BOT_TOKEN)
+    if not message:
+        return
     await bot.send_message(chat_id=CHAT_ID, text=message, parse_mode=ParseMode.MARKDOWN)
 
 
